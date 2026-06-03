@@ -1,0 +1,50 @@
+version: "3"
+
+tasks:
+
+  base:
+    cmds:
+      - ./scripts/install_base.sh
+
+  tooling:
+    cmds:
+      - ./scripts/install_go.sh
+      - ./scripts/install_tofu.sh
+      - ./scripts/install_python_tools.sh
+      - ./scripts/install_task.sh
+
+  kubernetes:
+    cmds:
+      - ./scripts/install_kubectl.sh
+      - ./scripts/install_helm.sh
+      - ./scripts/install_k9s.sh
+
+  iac:
+    cmds:
+      - ./scripts/install_tflint.sh
+      - ./scripts/install_terraform_docs.sh
+      - ./scripts/install_sops.sh
+
+  config:
+    cmds:
+      - ./scripts/configure_git.sh
+      - ./scripts/configure_bash.sh
+      - ./scripts/configure_docker.sh
+
+  ansible:
+    cmds:
+      - ./scripts/install_ansible_collections.sh
+
+  verify:
+    cmds:
+      - ./scripts/verify_environment.sh
+
+  all:
+    cmds:
+      - task base
+      - task tooling
+      - task kubernetes
+      - task iac
+      - task config
+      - task ansible
+      - task verify
